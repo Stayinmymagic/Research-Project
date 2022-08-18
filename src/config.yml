@@ -1,0 +1,21 @@
+---
+model: 
+  epochs: 50
+  embedding_dim: 768
+  n_hidden: 128  
+  attn_matrix: 64
+  linear_matrix: 64
+  final_mat: 20
+  lr: 0.002
+  device: 'cpu'
+
+topics:
+  topic_list: ['finance', 'fed','currencies','technology']
+
+paths:
+  data: 'data/'
+  log: 'log/'
+  text: 'finbert_embeddings_filtered_sentiment.h5'
+  target: 'target.csv'
+
+

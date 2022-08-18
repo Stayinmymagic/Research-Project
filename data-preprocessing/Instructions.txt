@@ -1,0 +1,12 @@
+<各資料夾介紹>
+
+1. webscraper --->爬新聞，儲存在SQL
+
+2. 從SQL 輸出新聞以csv檔呈現
+
+3. topic_pickle.py --->資料前處理，將新聞以主題排序，資料格式以pickle檔儲存，輸出檔案名稱：news_sorted_by_topic.pickle
+
+4. Bert_sentence_embedding_to_hdf5.py --->資料前處理，新聞文字轉向量，資料格式：hdf5，輸出檔案名稱：bert_embedding_filtered_sentiment.h5
+(文字轉向量有使用三種預訓練模型，bert, finbert, Sbert)
+
+<>
