@@ -6,10 +6,10 @@ Forecasting US economic indicators.
 
 ### Methods
 
-**BERT
-**Multi-task learning
-**LSTM
-**Attention
+* BERT
+* Multi-task learning
+* LSTM
+* Attention
 
 ### Instructions
 #### <資料預處理>
