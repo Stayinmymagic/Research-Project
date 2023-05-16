@@ -72,7 +72,6 @@ class DataPipe:
     def split_data(self, data_array, target):
         X_train, X_test, Y_train, Y_test = train_test_split(data_array, target, test_size=0.2, shuffle = False)
         train_mm = StandardScaler()
-        test_mm = StandardScaler()
         cols = Y_train.columns[1:9]
         for col in cols:
             if col != 'DATE':
@@ -80,12 +79,12 @@ class DataPipe:
         
         for col in cols:
             if col != 'DATE':
-                Y_test.loc[:, col] = test_mm.fit_transform(np.array(Y_test.loc[:, col]).reshape(len(Y_test.loc[:, col]), 1))
+                Y_test.loc[:, col] = train_mm.transform(np.array(Y_test.loc[:, col]).reshape(len(Y_test.loc[:, col]), 1))
         X_train, X_valid, Y_train, Y_valid = train_test_split(X_train, Y_train, test_size=0.1, shuffle = False)
         
         Y_train = Y_train.reset_index(inplace = False).drop('index', axis=1)
         Y_valid = Y_valid.reset_index(inplace = False).drop('index', axis=1)
         Y_test = Y_test.reset_index(inplace = False).drop('index', axis=1)
         
-        return  X_train, X_valid, X_test, Y_train, Y_valid, Y_test, train_mm, test_mm
+        return  X_train, X_valid, X_test, Y_train, Y_valid, Y_test, train_mm
     
