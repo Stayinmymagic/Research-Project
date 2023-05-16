@@ -138,7 +138,7 @@ class Executor:
             recall.append(np.round(recall_score(target[:, 8+i], temp), 4))
             f1.append(np.round(f1_score(target[:, 8+i], temp), 4))
         return acc, mcc, precision, recall,  f1
-    def train_dev(self, X_train, Y_train, train_mm, X_valid, Y_valid, X_test, Y_test, test_mm ):
+    def train_dev(self, X_train, Y_train, train_mm, X_valid, Y_valid, X_test, Y_test, train_mm):
         self.epochs = config_model['epochs']
 
         torch.backends.cudnn.enable =True
@@ -184,7 +184,7 @@ class Executor:
                     y_test_forloss = torch.FloatTensor(np.array(Y_test.iloc[:, 1:])).to(self.device)
                     test_loss = self.calculate_loss(test_loss_record)
                     test_acc, test_mcc, test_precision, test_recall, test_f1 = self.calculate_acc(
-                    y_pred_record, y_test_forloss.cpu().detach().numpy(), test_mm)
+                    y_pred_record, y_test_forloss.cpu().detach().numpy(), train_mm)
                     print('epoch : {}, train loss = {}, valid loss = {} , test loss = {}'
                   .format(epoch, train_loss, valid_loss, test_loss))
                     print('train acc = {},train mcc = {}, train precision = {}, train recall = {},train f1 = {},\
@@ -198,7 +198,7 @@ class Executor:
                 y_test_forloss = torch.FloatTensor(np.array(Y_test.iloc[:, 1:])).to(self.device)
                 test_loss = self.calculate_loss(test_loss_record)
                 test_acc, test_mcc, test_precision, test_recall, test_f1 = self.calculate_acc(
-                    y_pred_record, y_test_forloss.cpu().detach().numpy(), test_mm)
+                    y_pred_record, y_test_forloss.cpu().detach().numpy(), train_mm)
                 
                 
 
